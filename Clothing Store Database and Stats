@@ -1,0 +1,36 @@
+--Create a clothing store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, aisle INTEGER, quantity INTEGER, price INTEGER);
+
+INSERT INTO store VALUES 
+(1, "t-shirt", 1, 24, 20), 
+(2, "jeans", 2, 5, 60), 
+(3, "shoes", 3, 10, 40), 
+(4, "boots", 3, 2, 70),
+(5, "hat", 1, 5, 20),
+(6, "boxers", 2, 20, 5), 
+(7, "sneakers", 3, 20, 60), 
+(8, "running shoes", 3, 5, 80), 
+(9, "hiking boots", 3, 4, 90), 
+(10, "heels", 3, 6, 60), 
+(11, "khakis", 2, 5, 40), 
+(12, "long sleeve shirt", 1, 20, 30), 
+(13, "belt", 2, 5, 20), 
+(14, "polo", 1, 8, 50), 
+(15, "sweatshirt", 1, 15, 30);
+
+--display the database ordered by aisle
+SELECT * 
+FROM store 
+ORDER BY aisle;
+
+--how many items do we have in the store?
+SELECT SUM(quantity) AS "Total Inventory" 
+FROM store;
+
+--what aisle has the most items?
+SELECT COUNT(item) AS "Total Items", aisle 
+FROM store 
+GROUP BY aisle 
+ORDER BY aisle DESC 
+LIMIT 1;
