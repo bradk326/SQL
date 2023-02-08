@@ -1,0 +1,12 @@
+--analysis of dataset from https://gist.github.com/pamelafox/6cda1115e2bcbc43e62cf4ff9d4158c7
+
+--what is the average age of a player in the NBA that achieves player of the week?
+SELECT ROUND(AVG(Age)) AS 'Average Age of Player of the Week' 
+FROM players;
+
+--who is the shortest player to achieve NBA player of the week, how tall were they (in feet), and when did they achieve this?
+SELECT Player, ROUND(MIN(Height_CM * 0.0328084),1) AS 'Height in Feet', Date
+FROM players;
+
+--who is the oldest player to have achieved NBA player of the week and how old were they?
+SELECT Player, MAX(Age) AS 'Oldest Player of the Week' FROM players;
