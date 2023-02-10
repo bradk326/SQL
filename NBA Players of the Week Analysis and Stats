@@ -10,3 +10,14 @@ FROM players;
 
 --who is the oldest player to have achieved NBA player of the week and how old were they?
 SELECT Player, MAX(Age) AS 'Oldest Player of the Week' FROM players;
+
+--what is the year range for this NBA dataset?
+SELECT MIN(DISTINCT(Season_short)) AS 'First Season in Dataset', MAX(DISTINCT(Season_short)) AS 'Last Season in Dataset'
+FROM players;
+
+--what are the schools that have the most players that achieved NBA player of the week and how many from said schools?
+SELECT COUNT(DISTINCT(Player)) AS 'Player Count', Predraft_Team AS 'University or High School Attended (1980 - 2020 Dataset)' 
+FROM players 
+GROUP BY Predraft_Team 
+ORDER BY COUNT(DISTINCT(Player)) DESC 
+LIMIT 10;
