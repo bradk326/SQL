@@ -21,3 +21,37 @@ FROM players
 GROUP BY Predraft_Team 
 ORDER BY COUNT(DISTINCT(Player)) DESC 
 LIMIT 10;
+
+--how many NBA players of the week were considered backcourt positions or frontcourt positions?
+SELECT COUNT(DISTINCT(Player)) AS 'Number of Players',
+    CASE
+    WHEN Position = 'PG' OR Position = 'SG' THEN 'Backcourt'
+    ELSE 'Frontcourt'
+    END AS 'Court'
+FROM players
+GROUP BY Court
+ORDER BY COUNT(Player) DESC;
+
+--what are the top ten schools that NBA players of the week attended?
+SELECT COUNT(DISTINCT(Player)) AS Player_Count, Predraft_Team AS 'University or High School Attended (1980 - 2020 Dataset)' 
+FROM players 
+GROUP BY Predraft_Team 
+ORDER BY Player_Count DESC 
+LIMIT 10;
+
+--what is all of the information on the NBA player of the week that played for the Bulls and played for the University of North Carolina?
+SELECT *
+FROM players
+WHERE Team = 'Chicago Bulls' AND Predraft_Team = 'North Carolina';
+
+--how many players who were player of the week are average height or average weight for the NBA (average height is about 201 cm, average weight is about 99 kg for an NBA player in the 2022-2023 season)?
+SELECT COUNT(DISTINCT(Player)) AS "Number of Players with Average Height or Weight for the NBA"
+FROM players
+WHERE Height_CM = 201 OR Weight_KG = 99;
+
+--what teams had a higher average height in centimenters than the average height of an NBA player during the 2022-2023 season?
+SELECT Team, ROUND(AVG(Height_CM)) AS 'Average Height in Centimeters'
+FROM players
+GROUP BY Team
+HAVING ROUND(AVG(Height_CM)) >= 201
+ORDER BY ROUND(AVG(Height_CM)) DESC;
