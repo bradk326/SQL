@@ -1,0 +1,31 @@
+/* Create table about the people and what they do here */
+CREATE TABLE singer (id INTEGER PRIMARY KEY AUTOINCREMENT, firstname TEXT, lastname TEXT);
+
+INSERT INTO singer (firstname, lastname) VALUES ('Kurt', 'Cobain');
+INSERT INTO singer (firstname, lastname) VALUES ('Layne', 'Staley');
+INSERT INTO singer (firstname, lastname) VALUES ('Scott', 'Weiland');
+INSERT INTO singer (firstname, lastname) VALUES ('Chris', 'Cornell');
+INSERT INTO singer (firstname, lastname) VALUES ('Eddie', 'Vedder');
+INSERT INTO singer (firstname, lastname) VALUES ('Billy', 'Corgan');
+INSERT INTO singer (firstname, lastname) VALUES ('Dave', 'Grohl');
+INSERT INTO singer (firstname, lastname) VALUES ('Josh', 'Homme');
+INSERT INTO singer (firstname, lastname) VALUES ('Anthony', 'Kiedis');
+INSERT INTO singer (firstname, lastname) VALUES ('Maynard James', 'Keenan');
+
+CREATE TABLE band (id INTEGER PRIMARY KEY AUTOINCREMENT, singer_id INTEGER, band TEXT);
+INSERT INTO band (singer_id, band) VALUES (1, 'Nirvana');
+INSERT INTO band (singer_id, band) VALUES (2, 'Alice in Chains');
+INSERT INTO band (singer_id, band) VALUES (3, 'Stone Temple Pilots');
+INSERT INTO band (singer_id, band) VALUES (4, 'Soundgarden');
+INSERT INTO band (singer_id, band) VALUES (5, 'Pearl Jam');
+INSERT INTO band (singer_id, band) VALUES (6, 'Smashing Pumpkins');
+INSERT INTO band (singer_id, band) VALUES (7, 'Foo Fighters');
+INSERT INTO band (singer_id, band) VALUES (8, 'Queens of the Stone Age');
+INSERT INTO band (singer_id, band) VALUES (9, 'Red Hot Chili Peppers');
+INSERT INTO band (singer_id, band) VALUES (10, 'Tool');
+
+--what are the first and last names of the singer in each band?
+SELECT singer.firstname, singer.lastname, band.band
+  FROM singer
+  JOIN band
+    ON singer.id = band.singer_id;
